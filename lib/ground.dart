@@ -3,7 +3,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/parallax.dart';
 import 'package:flappy_ember/game.dart';
 
-class Ground extends ParallaxComponent<FlappyEmberGame> {
+class Ground extends ParallaxComponent<FlappyEmber> {
   Ground() : super(priority: -1);
 
   @override

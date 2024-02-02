@@ -1,33 +1,42 @@
 import 'dart:math';
 
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/widgets.dart';
+import 'package:flame/flame.dart';
 
-import 'box.dart';
 import 'game.dart';
+import 'box.dart';
 
-class BoxStack extends PositionComponent with HasGameRef<FlappyEmberGame> {
-  static final Random _rng = Random();
+class BoxStack extends PositionComponent with HasGameRef<FlappyEmber> {
+  final bool isBottom;
+  static final random = Random();
+
+  BoxStack({required this.isBottom});
 
   @override
-  Future<void> onLoad() async {
-    final isBottom = _rng.nextBool();
+  Future<void>? onLoad() async {
     position.x = gameRef.size.x;
     final gameHeight = gameRef.size.y;
     final boxHeight = Box.initialSize.y;
-    final maxStackHeight = (gameRef.size.y / Box.initialSize.y).floor() - 2;
-    final stackHeight = _rng.nextInt(maxStackHeight + 1);
+    final maxStackHeight = (gameHeight / boxHeight).floor() - 2;
+
+    final stackHeight = random.nextInt(maxStackHeight + 1);
     final boxSpacing = boxHeight * (2 / 3);
     final initialY = isBottom ? gameHeight - boxHeight : -boxHeight / 3;
-    final boxes = List.generate(stackHeight, (i) {
+
+    final boxs = List.generate(stackHeight, (index) {
       return Box(
-        position: Vector2(0, initialY + i * boxSpacing * (isBottom ? -1 : 1)),
+        position:
+            Vector2(0, initialY + index * boxSpacing * (isBottom ? -1 : 1)),
       );
     });
-    addAll(isBottom ? boxes : boxes.reversed);
+    addAll(isBottom ? boxs : boxs.reversed);
   }
 
   @override
   void update(double dt) {
+    super.update(dt);
     if (position.x < -Box.initialSize.x) {
       removeFromParent();
     }

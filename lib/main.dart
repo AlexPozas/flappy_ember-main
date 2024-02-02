@@ -4,6 +4,6 @@ import 'package:flutter/material.dart';
 import 'game.dart';
 
 void main() {
-  final game = FlappyEmberGame();
+  final game = FlappyEmber();
   runApp(GameWidget(game: game));
 }
