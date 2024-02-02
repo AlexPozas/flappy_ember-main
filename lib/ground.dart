@@ -22,6 +22,5 @@ class Ground extends ParallaxComponent<FlappyEmber> {
   @override
   void update(double dt) {
     super.update(dt);
-    parallax?.baseVelocity.x = gameRef.speed;
   }
 }

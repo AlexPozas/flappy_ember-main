@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flappy_ember/box_stack.dart';
+import 'package:flappy_ember/ground.dart';
 import 'package:flappy_ember/player.dart';
 
 import 'sky.dart';
@@ -17,6 +18,7 @@ class FlappyEmber extends FlameGame with TapDetector, HasCollisionDetection {
   Future<void>? onLoad() async {
     player = Player();
     add(Sky());
+    add(Ground());
     add(ScreenHitbox());
     add(player);
     return null;
