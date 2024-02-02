@@ -6,7 +6,7 @@ class Sky extends SpriteComponent {
 
   @override
   Future<void>? onLoad() async {
-    final image = await Flame.images.load('./parallax/bg_sky.png');
+    final image = await Flame.images.load('./sky.png');
 
     sprite = Sprite(image);
   }
